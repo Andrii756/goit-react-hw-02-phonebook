@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 
 import Form from './Form/Form';
@@ -8,24 +7,15 @@ import ContactList from './ContactList/ContactList';
 import { Container, Title, Subtitle } from './App.styled';
 
 class App extends React.Component {
-  static defaultProps = {
-    initialSettings: [
+  state = {
+    contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
       { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-  };
-
-  static propTypes = {
-    initialSettings: PropTypes.arrayOf(PropTypes.object.isRequired),
-  };
-
-  state = {
-    contacts: this.props.initialSettings,
     filter: '',
   };
-
   pushDataToArr = contact => {
     this.setState(prevState => ({
       contacts: [contact, ...prevState.contacts],
